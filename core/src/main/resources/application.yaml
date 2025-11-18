@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: core
+  datasource:
+    url: jdbc:mysql://localhost:3306/mynextduty
+    password: suraj
+    username: root
+    type : com.zaxxer.hikari.HikariDataSource
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      show-sql: true
+      database-platform : org.hibernate.dialect.MySql8Dialect
+
+    hikari:
+      minimumIdle: 5
+      maximumPoolsize: 5
+
+
+
+server:
+  port: 8080
