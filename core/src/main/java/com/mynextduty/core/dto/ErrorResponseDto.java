@@ -1,9 +1,12 @@
 package com.mynextduty.core.dto;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @AllArgsConstructor
@@ -11,9 +14,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Builder
-public class SuccessResponseDto<T> implements ResponseDto<T> {
-  private String message = "Request processed successfully.";
-  private Integer status = 200;
+@Setter
+@Getter
+public class ErrorResponseDto<T> implements ResponseDto<T> {
+  private Long timestamp;
+  private String error;
+  private String message;
+  private Integer status;
   private T data;
 
   @Override
@@ -46,18 +53,30 @@ public class SuccessResponseDto<T> implements ResponseDto<T> {
     this.data = data;
   }
 
-  SuccessResponseDto(int status, String message) {
+  ErrorResponseDto(int status, String message) {
     this.status = status;
     this.message = message;
+    this.timestamp = new Date().getTime();
   }
 
-  SuccessResponseDto(String message, T data) {
+  ErrorResponseDto(int status, String message, String error) {
+    this.status = status;
+    this.message = message;
+    this.timestamp = new Date().getTime();
+    this.error = error;
+  }
+
+  ErrorResponseDto(String message, T data, String error) {
     this.message = message;
     this.data = data;
+    this.timestamp = new Date().getTime();
+    this.error = error;
   }
 
-  SuccessResponseDto(int status, T data) {
+  ErrorResponseDto(int status, T data, String error) {
     this.status = status;
     this.data = data;
+    this.timestamp = new Date().getTime();
+    this.error = error;
   }
 }
