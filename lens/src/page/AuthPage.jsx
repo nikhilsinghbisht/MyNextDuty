@@ -1,4 +1,4 @@
-import { Button } from "../components/common/Buttton";
+import Button  from "../components/common/Buttton";
 import form from "../config";
 
 export const AuthPage = () => {

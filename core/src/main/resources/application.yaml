@@ -1,23 +1,35 @@
+server:
+  server:
+    port: 8080
+  servlet:
+    context-path: /core
+
 spring:
   application:
     name: core
   datasource:
-    url: jdbc:mysql://localhost:3306/mynextduty
-    password: suraj
-    username: root
-    type : com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/mynextduty_db
+    username: ${DATABASE_USERNAME:}
+    password: ${DATABASE_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
 
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
-      show-sql: true
-      database-platform : org.hibernate.dialect.MySql8Dialect
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
 
-    hikari:
-      minimumIdle: 5
-      maximumPoolsize: 5
+  hikari:
+    pool-name: CoreHikariPool
+    maximum-pool-size: 15
+    minimum-idle: 5
+    idle-timeout: 30000
+    connection-timeout: 20000
+    max-lifetime: 1800000
 
 
 
-server:
-  port: 8080
