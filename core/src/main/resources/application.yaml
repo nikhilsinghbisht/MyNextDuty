@@ -1,6 +1,6 @@
 server:
-  server:
-    port: 8080
+  port: 8080
+  timezone: ${SERVER_TIMEZONE:IST}
   servlet:
     context-path: /core
 
@@ -17,8 +17,8 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: none
-    show-sql: false
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
@@ -30,6 +30,20 @@ spring:
     idle-timeout: 30000
     connection-timeout: 20000
     max-lifetime: 1800000
+
+# Logging
+logging:
+  level:
+    com.mynextduty: DEBUG
+    org.springframework.security: DEBUG
+
+core:
+  jwt:
+    secret: ${JWT_SECRET:}
+    expiration: ${JWT_EXPIRATION:86400000} # 24 hours in milliseconds
+    refresh:
+      expiration: ${JWT_REFRESH_EXPIRATION:259200000} # 3 days in milliseconds
+
 
 
 

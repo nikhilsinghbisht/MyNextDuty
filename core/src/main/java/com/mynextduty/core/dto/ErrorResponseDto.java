@@ -3,19 +3,13 @@ package com.mynextduty.core.dto;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Builder
-@Setter
-@Getter
 public class ErrorResponseDto<T> implements ResponseDto<T> {
   private Long timestamp;
   private String error;

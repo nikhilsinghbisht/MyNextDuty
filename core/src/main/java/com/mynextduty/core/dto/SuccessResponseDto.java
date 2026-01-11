@@ -2,14 +2,12 @@ package com.mynextduty.core.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Builder
 public class SuccessResponseDto<T> implements ResponseDto<T> {
   private String message = "Request processed successfully.";
