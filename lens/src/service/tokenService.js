@@ -1,10 +1,9 @@
 import Cookies from "js-cookie";
-
-const TOKEN_KEY = "token";
+import { ACCESS_TOKEN_KEY } from "../util/constants";
 
 export const getToken = () => {
   try {
-    return Cookies.get(TOKEN_KEY) || null;
+    return Cookies.get(ACCESS_TOKEN_KEY) || null;
   } catch (e) {
     console.error("Error reading token:", e);
     return null;
@@ -13,7 +12,7 @@ export const getToken = () => {
 
 export const setToken = (accessToken) => {
   try {
-    Cookies.set(TOKEN_KEY, accessToken, {
+    Cookies.set(ACCESS_TOKEN_KEY, accessToken, {
       secure: true,
       sameSite: "Strict",
     });
@@ -23,5 +22,5 @@ export const setToken = (accessToken) => {
 };
 
 export const clearToken = () => {
-  Cookies.remove(TOKEN_KEY);
+  Cookies.remove(ACCESS_TOKEN_KEY);
 };

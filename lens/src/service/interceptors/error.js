@@ -1,7 +1,7 @@
 import axios from "axios";
-import { navigate } from "../navigationService";
+import { navigate } from "../navigation.service";
 import { persistor } from "../../redux/store";
-import { API_BASE_URL, API_URLS } from "../apiUrls";
+import { CORE_BASE_URL, API_URLS } from "../apiUrls";
 import { setToken } from "../tokenService";
 
 let isRefreshing = false;
@@ -41,7 +41,7 @@ export const errorInterceptor = async (error, api) => {
 
     try {
       const refreshResponse = await axios.post(
-        `${API_BASE_URL}${API_URLS.AUTH.REFRESH}`,
+        `${CORE_BASE_URL}${API_URLS.AUTH.REFRESH}`,
         {},
         { withCredentials: true }
       );

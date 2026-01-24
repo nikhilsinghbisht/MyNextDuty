@@ -1,4 +1,4 @@
-const CORE_BASE_URL = import.meta.env.VITE_CORE_BASE_URL;
+export const CORE_BASE_URL = import.meta.env.VITE_CORE_BASE_URL;
 
 export const API_URLS = {
   AUTH: {
@@ -10,5 +10,3 @@ export const API_URLS = {
     PROFILE: "/user/profile",
   },
 };
-
-export default CORE_BASE_URL;
