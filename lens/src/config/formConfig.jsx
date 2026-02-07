@@ -1,4 +1,5 @@
 // formConfig.js
+
 const formConfig = {
   login: {
     fields: [

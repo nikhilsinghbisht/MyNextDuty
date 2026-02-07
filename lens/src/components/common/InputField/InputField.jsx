@@ -1,13 +1,9 @@
 import React from "react";
+import "./inputField.css";
+
 import {
-  wrapperStyle,
-  labelStyle,
-  inputBaseStyle,
   variants,
   sizes,
-  errorStyle,
-  helperTextStyle,
-  errorTextStyle,
 } from "./input.styles";
 import { INPUT_VARIANTS, INPUT_SIZES } from "./input.constants";
 
@@ -21,8 +17,6 @@ const InputField = React.forwardRef(
       size = INPUT_SIZES.MD,
       leftIcon,
       rightIcon,
-      style,
-      inputStyle,
       id,
       ...props
     },
@@ -32,50 +26,33 @@ const InputField = React.forwardRef(
     const describedBy = error || helperText ? `${inputId}-desc` : undefined;
 
     return (
-      <div style={wrapperStyle}>
+      <div className="input-wrapper">
         {label && (
-          <label htmlFor={inputId} style={labelStyle}>
+          <label htmlFor={inputId} className="input-label">
             {label}
           </label>
         )}
 
-        <div style={{ position: "relative", display: "flex" }}>
-          {leftIcon && (
-            <span
-              style={{ position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)" }}
-            >
-              {leftIcon}
-            </span>
-          )}
+        <div className="input-container">
+          {leftIcon && <span className="input-icon left">{leftIcon}</span>}
 
           <input
             ref={ref}
             id={inputId}
             aria-invalid={!!error}
             aria-describedby={describedBy}
-            style={{
-              ...inputBaseStyle,
-              ...variants[variant],
-              ...sizes[size],
-              ...(error ? errorStyle : {}),
-              paddingLeft: leftIcon ? "32px" : undefined,
-              paddingRight: rightIcon ? "32px" : undefined,
-              ...inputStyle,
-            }}
+            className={`input-field ${variant} ${size} ${error ? "error" : ""}`}
             {...props}
           />
 
-          {rightIcon && (
-            <span
-              style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)" }}
-            >
-              {rightIcon}
-            </span>
-          )}
+          {rightIcon && <span className="input-icon right">{rightIcon}</span>}
         </div>
 
         {(error || helperText) && (
-          <span id={describedBy} style={error ? errorTextStyle : helperTextStyle}>
+          <span
+            id={describedBy}
+            className={error ? "input-error-text" : "input-helper-text"}
+          >
             {error || helperText}
           </span>
         )}

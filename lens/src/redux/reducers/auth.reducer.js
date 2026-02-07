@@ -5,7 +5,7 @@ import {
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGIN_FAILURE,
   AUTH_LOGOUT,
-} from "../actions/auth.actions";
+} from "../../util/constants";
 
 const initialState = {
   isAuthenticated: false,
