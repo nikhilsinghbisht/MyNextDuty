@@ -63,6 +63,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:4.0.1'
+    implementation 'org.springframework.boot:spring-boot-starter-mail:4.0.1'
+
     implementation 'tools.jackson.core:jackson-core:3.0.3'
     implementation 'tools.jackson.core:jackson-databind:3.0.3'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:3.0-rc5'

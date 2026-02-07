@@ -11,6 +11,6 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class GlobalMessageDTO {
+public class GlobalMessageDto {
   private String message;
 }

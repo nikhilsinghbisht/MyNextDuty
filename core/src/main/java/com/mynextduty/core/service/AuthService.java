@@ -1,6 +1,6 @@
 package com.mynextduty.core.service;
 
-import com.mynextduty.core.dto.GlobalMessageDTO;
+import com.mynextduty.core.dto.GlobalMessageDto;
 import com.mynextduty.core.dto.auth.AuthRequestDto;
 import com.mynextduty.core.dto.auth.AuthResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,5 @@ public interface AuthService {
 
   AuthResponseDto refreshToken(HttpServletRequest request, HttpServletResponse httpServletResponse);
 
-  GlobalMessageDTO logout(HttpServletRequest httpServletRequest);
-
-  GlobalMessageDTO verifyEmail(String token);
+  GlobalMessageDto logout(HttpServletRequest httpServletRequest);
 }

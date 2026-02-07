@@ -1,11 +1,14 @@
 package com.mynextduty.core.controller;
 
-import com.mynextduty.core.dto.GlobalMessageDTO;
+import com.mynextduty.core.dto.GlobalMessageDto;
 import com.mynextduty.core.dto.ResponseDto;
 import com.mynextduty.core.dto.SuccessResponseDto;
 import com.mynextduty.core.dto.auth.AuthRequestDto;
 import com.mynextduty.core.dto.auth.AuthResponseDto;
+import com.mynextduty.core.entity.User;
 import com.mynextduty.core.service.AuthService;
+import com.mynextduty.core.service.CurrentUserService;
+import com.mynextduty.core.service.VerificationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -22,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
   private final AuthService authService;
+  private final VerificationService verificationService;
+  private final CurrentUserService currentUserService;
 
   @GetMapping("/public-key")
   public ResponseDto<String> publicKey() {
@@ -40,12 +45,28 @@ public class AuthController {
   }
 
   @PostMapping("/logout")
-  public ResponseDto<GlobalMessageDTO> logout(HttpServletRequest request) {
+  public ResponseDto<GlobalMessageDto> logout(HttpServletRequest request) {
     return new SuccessResponseDto<>(authService.logout(request));
   }
 
-  @PostMapping("/verify-email")
-  public ResponseDto<GlobalMessageDTO> verifyEmail(@RequestParam String token) {
-    return new SuccessResponseDto<>(authService.verifyEmail(token));
+  /**
+   * FLOW C: Verify email using token from email link
+   * Public endpoint - no authentication required
+   */
+  @GetMapping("/verify-email")
+  public ResponseDto<GlobalMessageDto> verifyEmail(@RequestParam String token) {
+    GlobalMessageDto result = verificationService.verifyEmail(token);
+    return new SuccessResponseDto<>(result);
+  }
+
+  /**
+   * FLOW B: Resend verification email for logged-in user
+   * Requires authentication
+   */
+  @PostMapping("/resend-verification")
+  public ResponseDto<GlobalMessageDto> resendVerification() {
+    User currentUser = currentUserService.getCurrentUser();
+    GlobalMessageDto result = verificationService.resendVerification(currentUser);
+    return new SuccessResponseDto<>(result);
   }
 }

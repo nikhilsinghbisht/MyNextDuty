@@ -2,7 +2,7 @@ package com.mynextduty.core.service.impl;
 
 import com.mynextduty.core.config.security.JwtUtil;
 import com.mynextduty.core.config.security.PassDecryptor;
-import com.mynextduty.core.dto.GlobalMessageDTO;
+import com.mynextduty.core.dto.GlobalMessageDto;
 import com.mynextduty.core.dto.auth.AuthRequestDto;
 import com.mynextduty.core.dto.auth.AuthResponseDto;
 import com.mynextduty.core.dto.auth.CustomUserDetails;
@@ -12,7 +12,6 @@ import com.mynextduty.core.exception.InvalidCredentialsException;
 import com.mynextduty.core.exception.KeyLoadingException;
 import com.mynextduty.core.exception.TokenException;
 import com.mynextduty.core.exception.UserNotFoundException;
-import com.mynextduty.core.repository.AuthRepository;
 import com.mynextduty.core.repository.UserRepository;
 import com.mynextduty.core.service.AuthService;
 import com.mynextduty.core.service.BlackListTokenService;
@@ -44,7 +43,6 @@ import static com.mynextduty.core.utils.Constants.REFRESH_TOKEN;
 public class AuthServiceImpl implements AuthService {
 
   private final AuthenticationManager authenticationManager;
-  private final AuthRepository authRepository;
   private final UserRepository userRepository;
   private final PassDecryptor passDecryptor;
   private final JwtUtil jwtUtil;
@@ -147,12 +145,7 @@ public class AuthServiceImpl implements AuthService {
   }
 
   @Override
-  public GlobalMessageDTO logout(HttpServletRequest httpServletRequest) {
-    return null;
-  }
-
-  @Override
-  public GlobalMessageDTO verifyEmail(String token) {
+  public GlobalMessageDto logout(HttpServletRequest httpServletRequest) {
     return null;
   }
 

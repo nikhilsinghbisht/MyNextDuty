@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Verification</title>
+</head>
+<body>
+<h2>Hello <span th:text="${name}">User</span>,</h2>
+
+<p>
+    Thanks for signing up! Please verify your email address by clicking
+    the button below:
+</p>
+
+<p>
+    <a th:href="${verificationLink}"
+       style="padding:10px 15px;
+                  background:#4CAF50;
+                  color:white;
+                  text-decoration:none;">
+        Verify Email
+    </a>
+</p>
+
+<p>
+    This link will expire in <b th:text="${expiryMinutes}">15</b> hours.
+</p>
+
+<p>— Team MyNextDuty 🚀</p>
+</body>
+</html>
